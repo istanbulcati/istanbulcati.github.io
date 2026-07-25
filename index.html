@@ -1,66 +1,1218 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modern Bubble Tasarım</title>
-<style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İstanbul Çatı Ustası Ziya | Profesyonel İzolasyon ve Çatı Tamiri</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    position: relative;
-    overflow-x: hidden;
-  }
+    <style>
+        /* CSS Değişkenleri (Renk ve Tasarım Sistemi) */
+        :root {
+            --primary: #2563eb;       /* Modern Mavi */
+            --primary-dark: #0f172a;  /* Gece Mavisi / Kurumsal */
+            --accent: #f59e0b;        /* Dikkat Çekici Kehribar/Turuncu */
+            --accent-hover: #d97706;
+            --white: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+            --whatsapp: #10b981;
+            --whatsapp-hover: #059669;
+            
+            /* Bubble Tasarım Hatları */
+            --radius-sm: 12px;
+            --radius-md: 24px;
+            --radius-full: 9999px; /* Tam Oval Tuşlar İçin */
+            
+            --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.08);
+            --shadow-hover: 0 20px 40px -10px rgba(37, 99, 235, 0.15);
+        }
 
-  /* Arka Plan Yumuşak Bubble Efektleri */
-  .bg-bubble-1 {
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    background: rgba(255, 182, 193, 0.5);
-    filter: blur(60px);
-    top: 10%;
-    left: 20%;
-    z-index: 0;
-  }
+        /* Genel Sıfırlama */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        }
 
-  .bg-bubble-2 {
-    position: absolute;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    background: rgba(147, 197, 253, 0.6);
-    filter: blur(70px);
-    bottom: 10%;
-    right: 20%;
-    z-index: 0;
-  }
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
 
-  /* Modern Bubble Kart Container */
-  .bubble-card {
-    position: relative;
-    z-index: 1;
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 36px; /* Yumuşak büyük oval köşe */
-    padding: 44px 36px;
-    max-width: 480px;
-    width: 100%;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 
+        /* Üst Bar (Top Nav) */
+        .top-nav {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 14px 0;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .top-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-contact {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-weight: 600;
+        }
+
+        .top-location {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        /* Üst Bar Oval Telefon Rozeti */
+        .top-phone-btn {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            color: #fef08a !important;
+            padding: 8px 18px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .top-phone-btn:hover {
+            background: var(--accent);
+            color: var(--white) !important;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* Karşılama Alanı (Hero) */
+        .hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(37, 99, 235, 0.85) 100%), 
+                        url('https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: var(--white);
+            padding: 100px 20px 130px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-container {
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Modern Oval Rozet */
+        .badge-oval {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            padding: 8px 24px;
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #e2e8f0;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Oval Butonlar */
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 36px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: var(--radius-full);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, #f97316 100%);
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, var(--whatsapp) 0%, #047857 100%);
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        /* İstatistik Çubuğu (Düzeltildi) */
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            margin: -60px auto 60px auto;
+            max-width: 1000px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 25px 15px;
+            position: relative;
+            z-index: 10;
+            border: 1px solid var(--white);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px 15px;
+            border-right: 1px solid var(--border);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .stat-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Ana Düzen */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            color: var(--primary);
+            background: #eff6ff;
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+
+        /* Hizmet Kartları */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: transparent;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 24px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Kurumsal & Neden Biz */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .about-box {
+            background: var(--white);
+            padding: 45px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border);
+        }
+
+        .about-box h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .about-box p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #dcfce7;
+            color: #16a34a;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        /* Çağrı Bandı (Callout) */
+        .callout-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            border-radius: var(--radius-md);
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 80px;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .callout-cta::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            top: -100px;
+            right: -50px;
+        }
+
+        .callout-cta h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .callout-cta p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--primary-dark);
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-white:hover {
+            background: var(--bg-light);
+            transform: translateY(-3px);
+        }
+
+        /* Alt Bilgi (Footer) */
+        footer {
+            background-color: var(--primary-dark);
+            color: #94a3b8;
+            padding: 60px 20px 40px 20px;
+            text-align: center;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer strong {
+            color: var(--white);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Düzenlemeler */
+        @media (max-width: 900px) {
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px 0;
+            }
+            /* 2'li dizilimde sağ çizgileri düzgün ayarlama */
+            .stat-item {
+                border-right: 1px solid var(--border);
+            }
+            .stat-item:nth-child(2n) {
+                border-right: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .top-location { display: none; }
+            .top-nav-container { justify-content: space-between; }
+            .stats-bar { margin-top: -30px; }
+            .callout-cta { padding: 40px 20px; }
+            .callout-cta h3 { font-size: 1.6rem; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-bar {
+                grid-template-columns: 1fr;
+                gap: 15px 0;
+            }
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 15px 10px;
+            }
+            .stat-item:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Üst Bar -->
+    <div class="top-nav">
+        <div class="top-nav-container">
+            <div class="brand-name">
+                🏠 İstanbul Çatı Ustası Ziya
+            </div>
+            <div class="top-contact">
+                <span class="top-location">📍 İstanbul Geneli Mobil Servis</span>
+                <a href="tel:05521774788" class="top-phone-btn">📞 0552 177 47 88</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Karşılama Alanı (Hero) -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="badge-oval">
+                <span class="badge-dot"></span>
+                Tecrübeli Ekip & Garantili İşçilik
+            </div>
+            <h1>İstanbul Çatı Yapımı, Tamiri ve Yalıtım Hizmetleri</h1>
+            <p>Tecrübeli ekibimizle; çatı aktarma, su yalıtımı, oluk montajı ve çatı onarımlarında profesyonel, uzun ömürlü ve garantili çözümler sunuyoruz.</p>
+            <div class="hero-cta">
+                <a href="tel:05521774788" class="btn btn-primary">📞 Hemen Ara & Keşif İste</a>
+                <a href="https://wa.me/905521774788?text=Merhaba,%20çatı%20işim%20için%20ücretsiz%20keşif%20ve%20bilgi%20almak%20istiyorum." class="btn btn-whatsapp" target="_blank">💬 WhatsApp'tan Ulaşın</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Öne Çıkan Rakamlar (Çizgi Mantığı Yenilendi) -->
+    <div class="container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">Tecrübeli Ekip</div>
+                <div class="stat-text">Alanında Uzman Kadro</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">39 İlçe</div>
+                <div class="stat-text">İstanbul Geneli Hizmet</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">%100</div>
+                <div class="stat-text">Müşteri Memnuniyeti</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">Ücretsiz</div>
+                <div class="stat-text">Yerinde Keşif Desteği</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hizmetler Bölümü -->
+    <div class="container">
+        
+        <div class="section-header">
+            <span class="section-subtitle">Uzmanlık Alanlarımız</span>
+            <h2 class="section-title">Kurumsal Çatı Çözümlerimiz</h2>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🔨</div>
+                <h3>Çatı Tamiri & Bakım Onarım</h3>
+                <p>Akan, rüzgarda hasar gören veya yıpranmış çatılarda noktasal tespit yapılarak su sızıntıları kalıcı olarak giderilir.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Çatı Aktarma & Yenileme</h3>
+                <p>Eskimiş kiremit, ahşap karkas ve yalıtım tabakaları sökülerek sıfırdan modern ve dayanıklı çatı sistemleri inşa edilir.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Membran & Su İzolasyonu</h3>
+                <p>Teras, gizli dere ve çatı yüzeylerinde yüksek kaliteli membran ve sıvı izolasyon ürünleriyle tam koruma sağlanır.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🌧️</div>
+                <h3>Eksiz Oluk & Dere Sistemleri</h3>
+                <p>Yağmur sularının binaya zarar vermesini önleyen eksiz oluk montajı, temizliği ve gider yenileme hizmetleri verilir.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <h3>Sandviç Panel & Şıngıl</h3>
+                <p>Sanayi yapıları, çatı katları ve konutlar için yüksek ısı izolasyonu sağlayan hafif ve modern çatı kaplamaları uygulanır.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>Ücretsiz Keşif Desteği</h3>
+                <p>Çatınızdaki problemleri yerinde inceliyor, en doğru malzemeyi ve ekonomik çözüm planını size şeffaflıkla sunuyoruz.</p>
+            </div>
+        </div>
+
+        <!-- Kurumsal Bilgi & Neden Biz -->
+        <div class="about-grid">
+            <div class="about-box">
+                <h3>Kurumsal Hakkımızda</h3>
+                <p>Çatı ve izolasyon alanında yılların tecrübesine sahip usta ekibimizle, yapınızın tüm ihtiyaçlarına kalıcı ve güvenilir çözümler üretiyoruz. Uzmanlığımız ve titiz işçiliğimizle projelerinizi eksiksiz teslim ediyoruz.</p>
+                <p>Birinci sınıf malzeme tercihimiz, yüksek iş disiplinimiz ve zamanında teslimat prensibimiz sayesinde İstanbul'un tüm ilçelerinde bireysel ve kurumsal müşterilerimize profesyonel hizmet sağlıyoruz.</p>
+            </div>
+
+            <div class="about-box">
+                <h3>Neden Bizi Tercih Etmelisiniz?</h3>
+                <ul class="feature-list">
+                    <li>Şeffaf Fiyatlandırma & Sürpriz Maliyet Yok</li>
+                    <li>Söz Verilen Günde Zamanında Teslimat</li>
+                    <li>Sertifikalı Birinci Sınıf Malzeme Kullanımı</li>
+                    <li>Garantili İşçilik ve Müşteri Desteği</li>
+                    <li>İstanbul'un Her Noktasına Hızlı Mobil Servis</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- İletişim Bandı -->
+        <div class="callout-cta">
+            <h3>Çatınızda Problem mi Var?</h3>
+            <p>Yağmur sızıntıları ve ısı kayıpları binanıza zarar vermeden önleminizi alın. Hemen bizi arayın, çatınızı yerinde ücretsiz inceleyelim.</p>
+            <a href="tel:05521774788" class="btn btn-white">📞 0552 177 47 88 - Hemen Ara</a>
+        </div>
+
+    </div>
+
+    <!-- Alt Bilgi (Footer) -->
+    <footer>
+        <div class="container">
+            <strong>İstanbul Çatı Ustası Ziya</strong>
+            <p>Profesyonel Çatı & İzolasyon Çözümleri</p>
+            <p style="margin-bottom: 20px;">📍 Hizmet Bölgelerimiz: Kadıköy, Beşiktaş, Üsküdar, Bakırköy, Fatih, Beyoğlu, Esenler, Maltepe ve Tüm İstanbul İlçeleri.</p>
+            <p style="font-size: 0.85rem; color: #64748b; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">© 2026 Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+        /* Karşılama Alanı (Hero) - Bubble Efektli */
+        .hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(37, 99, 235, 0.85) 100%), 
+                        url('https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: var(--white);
+            padding: 100px 20px 130px 20px; /* Alt boşluğu stat bar için fazla bıraktık */
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-container {
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Modern Oval Rozet */
+        .badge-oval {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            padding: 8px 24px;
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #e2e8f0;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Oval Butonlar */
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 36px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: var(--radius-full); /* Tam Oval */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, #f97316 100%);
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, var(--whatsapp) 0%, #047857 100%);
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        /* İstatistik Çubuğu (Bubble Card Formatında) */
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            margin: -60px auto 60px auto;
+            max-width: 1000px;
+            border-radius: var(--radius-md); /* Yumuşak köşeler */
+            box-shadow: var(--shadow-soft);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            padding: 30px 20px;
+            position: relative;
+            z-index: 10;
+            border: 1px solid var(--white);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            border-right: 1px solid var(--border);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .stat-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Ana Düzen */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            color: var(--primary);
+            background: #eff6ff;
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+
+        /* Hizmet Kartları (Modern Bubble Yorumu) */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: transparent;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            color: var(--primary);
+            border-radius: 50%; /* Yuvarlak ikon arka planı */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 24px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Kurumsal & Neden Biz */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .about-box {
+            background: var(--white);
+            padding: 45px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .about-box h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .about-box p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #dcfce7;
+            color: #16a34a;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        /* Çağrı Bandı (Callout) - Modern Oval Yapı */
+        .callout-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            border-radius: var(--radius-md);
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 80px;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Callout Arka Plan Süslemesi */
+        .callout-cta::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            top: -100px;
+            right: -50px;
+        }
+
+        .callout-cta h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .callout-cta p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--primary-dark);
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-white:hover {
+            background: var(--bg-light);
+            transform: translateY(-3px);
+        }
+
+        /* Alt Bilgi (Footer) */
+        footer {
+            background-color: var(--primary-dark);
+            color: #94a3b8;
+            padding: 60px 20px 40px 20px;
+            text-align: center;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer strong {
+            color: var(--white);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Mobil Sabit İletişim Barı (Yarım Kalan Kısım Tamamlandı) */
+        .mobile-sticky-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 15px;
+            box-shadow: 0 -10px 20px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+            border-top: 1px solid var(--border);
+        }
+
+        .mobile-sticky-bar .btn {
+            flex: 1;
+            padding: 14px 10px;
+            font-size: 0.95rem;
+            border-radius: var(--radius-sm); /* Mobilde hap yerine hafif yuvarlak köşe daha iyi sığar */
+        }
+
+        /* Responsive Düzenlemeler */
+        @media (min-width: 768px) {
+            .mobile-sticky-bar {
+                display: none;
+            }
+            body {
+                padding-bottom: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .top-contact span { display: none; } /* Mobilde adresi gizle, sadece tel kalsın */
+            .top-contact { width: 100%; justify-content: flex-end; }
+            
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 20px 10px;
+            }
+            .stat-item:last-child { border-bottom: none; }
+            .stats-bar { margin-top: -30px; }
+            
+            .callout-cta { padding: 40px 20px; }
+            .callout-cta h3 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Üst Bar -->
+    <div class="top-nav">
+        <div class="top-nav-container">
+            <div class="brand-name">Ziya Usta Çatı Sistemleri</div>
+            <div class="top-contact">
+                <span>📍 İstanbul Geneli Mobil Servis</span>
+                <a href="tel:05521774788">📞 0552 177 47 88</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Karşılama Alanı (Hero) -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="badge-oval">
+                <span class="badge-dot"></span>
+                Tecrübeli Ekip & Garantili İzolasyon
+            </div>
+            <h1>İstanbul Çatı Yapımı, Tamiri ve Yalıtım Hizmetleri</h1>
+            <p>20 yılı aşkın tecrübemizle çatı aktarma, su yalıtımı, oluk montajı ve çatı onarımlarında profesyonel, uzun ömürlü ve garantili çözümler sunuyoruz.</p>
+            <div class="hero-cta">
+                <a href="tel:05521774788" class="btn btn-primary">📞 Hemen Ara & Keşif İste</a>
+                <a href="https://wa.me/905521774788?text=Merhaba,%20çatı%20işim%20için%20ücretsiz%20keşif%20ve%20bilgi%20almak%20istiyorum." class="btn btn-whatsapp" target="_blank">💬 WhatsApp'tan Yazın</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Öne Çıkan Rakamlar (Bubble Card) -->
+    <div class="container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">20+ Yıl</div>
+                <div class="stat-text">Sektör Tecrübesi</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">39 İlçe</div>
+                <div class="stat-text">İstanbul Geneli Hizmet</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">%100</div>
+                <div class="stat-text">Müşteri Memnuniyeti</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">Ücretsiz</div>
+                <div class="stat-text">Yerinde Keşif</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hizmetler Bölümü -->
+    <div class="container">
+        
+        <div class="section-header">
+            <span class="section-subtitle">Uzmanlık Alanlarımız</span>
+            <h2 class="section-title">Kurumsal Çatı Çözümlerimiz</h2>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🔨</div>
+                <h3>Çatı Tamiri & Bakım Onarım</h3>
+                <p>Akan, rüzgarda hasar gören veya yıpranmış çatılarda noktasal tespit yapılarak su sızıntıları kalıcı olarak giderilir.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Çatı Aktarma & Yenileme</h3>
+                <p>Eskimiş kiremit, ahşap karkas ve yalıtım tabakaları sökülerek sıfırdan modern ve dayanıklı çatı sistemleri inşa edilir.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Membran & Su İzolasyonu</h3>
+                <p>Teras, gizli dere ve çatı yüzeylerinde yüksek kaliteli membran ve sıvı izolasyon ürünleriyle tam koruma sağlanır.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🌧️</div>
+                <h3>Eksiz Oluk & Dere Sistemleri</h3>
+                <p>Yağmur sularının binaya zarar vermesini önleyen eksiz oluk montajı, temizliği ve gider yenileme hizmetleri verilir.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <h3>Sandviç Panel & Şıngıl</h3>
+                <p>Sanayi yapıları, çatı katları ve konutlar için yüksek ısı izolasyonu sağlayan hafif ve modern çatı kaplamaları uygulanır.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>Ücretsiz Keşif Desteği</h3>
+                <p>Çatınızdaki problemleri yerinde inceliyor, en doğru malzemeyi ve ekonomik çözüm planını size şeffaflıkla sunuyoruz.</p>
+            </div>
+        </div>
+
+        <!-- Kurumsal Bilgi & Neden Biz -->
+        <div class="about-grid">
+            <div class="about-box">
+                <h3>Kurumsal Hakkımızda</h3>
+                <p><strong>İstanbul Çatı Ustası Ziya</strong> olarak, çatı sistemleri, tamir, izolasyon ve yapı yenileme alanlarında yılların verdiği birikimle hizmet vermekteyiz.</p>
+                <p>İş disiplinimiz, birinci sınıf malzeme tercihimiz ve zamanında teslimat prensibimiz sayesinde İstanbul'un tüm ilçelerinde bireysel ve kurumsal müşterilerimize güvenilir çözümler üretiyoruz.</p>
+            </div>
+
+            <div class="about-box">
+                <h3>Neden Bizi Tercih Etmelisiniz?</h3>
+                <ul class="feature-list">
+                    <li>Şeffaf Fiyatlandırma & Sürpriz Maliyet Yok</li>
+                      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 
                 inset 0 1px 0 rgba(255, 255, 255, 0.9);
     text-align: center;
   }
