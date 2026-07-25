@@ -3,152 +3,566 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İstanbul Çatı Ustası Ziya - Profesyonel Çatı Tamir & İzolasyon</title>
+    <title>İstanbul Çatı Ustası Ziya | Profesyonel Çatı İzolasyon & Tamir Hizmetleri</title>
+    <meta name="description" content="İstanbul geneli garantili çatı tamiri, çatı aktarma, su yalıtımı, membran ve oluk montajı hizmetleri. 20+ yıllık tecrübe ve ücretsiz keşif imkanıyla hizmetinizdeyiz.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --accent: #d97706;
+            --accent-hover: #b45309;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
+
         body {
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
+            padding-bottom: 70px; /* Mobil ekranlar için alt boşluk */
         }
-        header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
+
+        /* Üst Bilgi Çubuğu */
+        .top-nav {
+            background-color: var(--primary-dark);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .top-nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            color: var(--white);
+            font-size: 1.1rem;
+            letter-spacing: -0.3px;
+        }
+
+        .top-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-contact a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .top-contact a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero / Karşılama Alanı */
+        .hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 58, 138, 0.88) 100%), 
+                        url('https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: var(--white);
+            padding: 90px 20px;
             text-align: center;
-            padding: 80px 20px;
         }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #ffcc00;
+
+        .hero-container {
+            max-width: 850px;
+            margin: 0 auto;
         }
-        header p {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(217, 119, 6, 0.2);
+            border: 1px solid rgba(217, 119, 6, 0.5);
+            color: #fef08a;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
-        .btn-container {
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            margin-bottom: 35px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
             display: flex;
             justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
         }
+
         .btn {
-            display: inline-block;
-            padding: 12px 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 700;
             text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
         }
-        .btn-phone {
-            background-color: #007bff;
-            color: white;
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
         }
-        .btn-whatsapp {
-            background-color: #25d366;
-            color: white;
-        }
-        .btn:hover {
-            opacity: 0.9;
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
-        .container {
+
+        .btn-whatsapp {
+            background-color: #16a34a;
+            color: var(--white);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #15803d;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* İstatistik Çubuğu */
+        .stats-bar {
+            background: var(--white);
+            margin: -40px auto 50px auto;
             max-width: 1000px;
-            margin: 40px auto;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            padding: 25px 20px;
+            border: 1px solid var(--border);
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            border-right: 1px solid var(--border);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .stat-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Ana Düzen */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
             padding: 0 20px;
         }
-        .section-title {
+
+        .section-header {
             text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: #222;
+            margin-bottom: 45px;
         }
+
+        .section-subtitle {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+
+        /* Hizmet Kartları */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
         }
+
         .service-card {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-top: 4px solid #ffcc00;
-        }
-        .service-card h3 {
-            margin-bottom: 10px;
-            color: #222;
-        }
-        .about-section {
-            background: white;
+            background: var(--white);
             padding: 30px;
-            border-radius: 8px;
-            margin-top: 40px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
         }
-        footer {
-            background-color: #222;
-            color: #ccc;
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: #cbd5e1;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #eff6ff;
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Kurumsal & Neden Biz */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .about-box {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .about-box h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .about-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #16a34a;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        /* Çağrı Bandı (Callout) */
+        .callout-cta {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            border-radius: 16px;
+            padding: 45px 30px;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            margin-bottom: 60px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .callout-cta h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .callout-cta p {
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            max-width: 650px;
+            margin: 0 auto 25px auto;
+        }
+
+        /* Alt Bilgi (Footer) */
+        footer {
+            background-color: var(--primary-dark);
+            color: #94a3b8;
+            padding: 40px 20px 20px 20px;
+            text-align: center;
             font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        /* Mobil Sabit İletişim Barı */
+        .mobile-sticky-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            padding: 10px 15px;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            border-top: 1px solid var(--border);
+        }
+
+        .mobile-sticky-bar .btn {
+            flex: 1;
+            padding: 12px 10px;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-sticky-bar {
+                display: none;
+            }
+            body {
+                padding-bottom: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+            .stat-item:last-child {
+                border-bottom: none;
+            }
+            .stats-bar {
+                margin-top: -20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>İstanbul Çatı Ustası Ziya</h1>
-        <p>İstanbul Geneli Profesyonel Çatı Yapımı, Tamiri ve İzolasyon Hizmetleri</p>
-        <div class="btn-container">
-            <a href="tel:05521774788" class="btn btn-phone">📞 Hemen Ara: 0552 177 47 88</a>
-            <a href="https://wa.me/905521774788?text=Merhaba,%20çatı%20işim%20için%20bilgi%20almak%20istiyorum." class="btn btn-whatsapp" target="_blank">💬 WhatsApp'tan Yazın</a>
-        </div>
-    </header>
-
-    <div class="container">
-        <h2 class="section-title">Hizmetlerimiz</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>🔨 Çatı Tamiri & Onarım</h3>
-                <p>Akan, hasar görmüş veya yıpranmış çatılarınızı kaliteli işçilikle kısa sürede tamir ediyoruz.</p>
+    <!-- Üst Bar -->
+    <div class="top-nav">
+        <div class="top-nav-container">
+            <div class="brand-name">İstanbul Çatı Ustası Ziya</div>
+            <div class="top-contact">
+                <span>📍 İstanbul Geneli Mobil Servis</span>
+                <a href="tel:05521774788">📞 0552 177 47 88</a>
             </div>
-            <div class="service-card">
-                <h3>🏠 Çatı Aktarma & Yenileme</h3>
-                <p>Eskimiş kiremit ve ahşap karkas çatılarınızı komple söküp sıfırdan yeniliyoruz.</p>
-            </div>
-            <div class="service-card">
-                <h3>🛡️ Su Yalıtımı & İzolasyon</h3>
-                <p>Çatı ve teras alanlarınızda su sızıntılarına karşı garantili izolasyon çözümleri sunuyoruz.</p>
-            </div>
-            <div class="service-card">
-                <h3>🌧️ Yağmur Oluğu Montajı</h3>
-                <p>Oluk temizliği, tamiri ve yeni oluk montajı hizmetleriyle binanızı su hasarlarından koruyoruz.</p>
-            </div>
-        </div>
-
-        <div class="about-section">
-            <h2 class="section-title" style="text-align: left; margin-bottom: 15px;">Hakkımızda</h2>
-            <p>İstanbul Çatı Ustası Ziya olarak, İstanbul'un tüm ilçelerine çatı sistemleri, tamir, bakım ve izolasyon alanlarında profesyonel çözümler sunuyoruz. Uzman ekibimiz, kaliteli malzeme kullanımı ve titiz işçilik ilkesiyle evinizi ve iş yerinizi güvenceye almaktadır.</p>
-            <br>
-            <p><strong>Hizmet Bölgeleri:</strong> Beyoğlu, Fatih, Bakırköy, Beşiktaş, Esenler, Kadıköy ve tüm İstanbul ilçeleri.</p>
         </div>
     </div>
 
+    <!-- Karşılama Alanı (Hero) -->
+    <header class="hero">
+        <div class="hero-container">
+            <span class="hero-badge">Uzman İşçilik & Garantili İzolasyon</span>
+            <h1>İstanbul Çatı Yapımı, Tamiri ve Yalıtım Hizmetleri</h1>
+            <p>20 yılı aşkın tecrübemizle çatı aktarma, su yalıtımı, oluk montajı ve çatı onarımlarında profesyonel, uzun ömürlü ve garantili çözümler sunuyoruz.</p>
+            <div class="hero-cta">
+                <a href="tel:05521774788" class="btn btn-primary">📞 Hemen Ara & Keşif İste</a>
+                <a href="https://wa.me/905521774788?text=Merhaba,%20çatı%20işim%20için%20ücretsiz%20keşif%20ve%20bilgi%20almak%20istiyorum." class="btn btn-whatsapp" target="_blank">💬 WhatsApp Teklif Al</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Öne Çıkan Rakamlar / Güven Barı -->
+    <div class="container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">20+ Yıl</div>
+                <div class="stat-text">Sektör Tecrübesi</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">39 İlçe</div>
+                <div class="stat-text">İstanbul Geneli Hizmet</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">%100</div>
+                <div class="stat-text">Garantili Müşteri Memnuniyeti</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">Ücretsiz</div>
+                <div class="stat-text">Yerinde Keşif & Danışmanlık</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hizmetler Bölümü -->
+    <div class="container">
+        
+        <div class="section-header">
+            <span class="section-subtitle">Uzmanlık Alanlarımız</span>
+            <h2 class="section-title">Kurumsal Çatı Çözümlerimiz</h2>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🔨</div>
+                <h3>Çatı Tamiri & Bakım Onarım</h3>
+                <p>Akan, rüzgarda hasar gören veya yıpranmış çatılarda noktasal tespit yapılarak su sızıntıları kalıcı olarak giderilir.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Çatı Aktarma & Yenileme</h3>
+                <p>Eskimiş kiremit, ahşap karkas ve yalıtım tabakaları sökülerek sıfırdan modern ve dayanıklı çatı sistemleri inşa edilir.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Membran & Su İzolasyonu</h3>
+                <p>Teras, gizli dere ve çatı yüzeylerinde yüksek kaliteli membran ve sıvı izolasyon ürünleriyle tam koruma sağlanır.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🌧️</div>
+                <h3>Eksiz Oluk & Dere Sistemleri</h3>
+                <p>Yağmur sularının binaya zarar vermesini önleyen eksiz oluk montajı, temizliği ve gider yenileme hizmetleri verilir.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <h3>Sandviç Panel & Şıngıl Kaplama</h3>
+                <p>Sanayi yapıları, çatı katları ve konutlar için yüksek ısı izolasyonu sağlayan hafif ve modern çatı kaplamaları uygulanır.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>Ücretsiz Keşif & Danışmanlık</h3>
+                <p>Çatınızdaki problemleri yerinde inceliyor, en doğru malzemeyi ve ekonomik çözüm planını size şeffaflıkla sunuyoruz.</p>
+            </div>
+        </div>
+
+        <!-- Kurumsal Bilgi & Neden Biz -->
+        <div class="about-grid">
+            <div class="about-box">
+                <h3>Kurumsal Hakkımızda</h3>
+                <p><strong>İstanbul Çatı Ustası Ziya</strong> olarak, çatı sistemleri, tamir, izolasyon ve yapı yenileme alanlarında yılların verdiği birikimle hizmet vermekteyiz.</p>
+                <p>İş disiplinimiz, birinci sınıf malzeme tercihimiz ve zamanında teslimat prensibimiz sayesinde İstanbul'un tüm ilçelerinde bireysel ve kurumsal müşterilerimize güvenilir çözümler üretiyoruz.</p>
+            </div>
+
+            <div class="about-box">
+                <h3>Neden Bizi Tercih Etmelisiniz?</h3>
+                <ul class="feature-list">
+                    <li>Şeffaf Fiyatlandırma & Sürpriz Maliyet Yok</li>
+                    <li>Söz Verilen Günde Zamanında Teslimat</li>
+                    <li>Sertifikalı Birinci Sınıf Malzeme Kullanımı</li>
+                    <li>Yazılı Garantili İşçilik ve Müşteri Desteği</li>
+                    <li>İstanbul'un Her Noktasına Hızlı Mobil Servis</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- İletişim Bandı -->
+        <div class="callout-cta">
+            <h3>Çatınızda Problem mi Var?</h3>
+            <p>Yağmur sızıntıları ve ısı kayıpları binanıza zarar vermeden önleminizi alın. Hemen bizi arayın, çatınızı yerinde ücretsiz inceleyelim.</p>
+            <a href="tel:05521774788" class="btn btn-primary" style="background-color: var(--white); color: var(--primary-dark);">📞 0552 177 47 88 - Hemen Ara</a>
+        </div>
+
+    </div>
+
+    <!-- Alt Bilgi (Footer) -->
     <footer>
-        <p>&copy; 2026 İstanbul Çatı Ustası Ziya - Tüm Hakları Saklıdır.</p>
-        <p>İletişim: 0552 177 47 88</p>
+        <p><strong>İstanbul Çatı Ustası Ziya</strong> — Profesyonel Çatı & İzolasyon Çözümleri</p>
+        <p>Hizmet Bölgelerimiz: Kadıköy, Beşiktaş, Üsküdar, Bakırköy, Fatih, Beyoğlu, Esenler, Maltepe ve Tüm İstanbul İlçeleri.</p>
+        <p style="margin-top: 15px; font-size: 0.8rem; color: #64748b;">© 2026 Tüm Hakları Saklıdır.</p>
     </footer>
+
+    <!-- Mobil Sabit Hızlı Erişim Barı -->
+    <div class="mobile-sticky-bar">
+        <a href="tel:05521774788" class="btn btn-primary">📞 Hemen Ara</a>
+        <a href="https://wa.me/905521774788?text=Merhaba,%20çatı%20işim%20için%20bilgi%20almak%20istiyorum." class="btn btn-whatsapp" target="_blank">💬 WhatsApp</a>
+    </div>
 
 </body>
 </html>
-
