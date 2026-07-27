@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://istanbulcati.github.io/sitemap.xml
